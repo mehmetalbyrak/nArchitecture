@@ -6,7 +6,9 @@ public class Brand:Entity
 {
     public string Name { get; set; }
     
-    public Brand()
+    public virtual ICollection<Model> Models { get; set; } 
+    
+    public Brand() 
     {
         
     }
