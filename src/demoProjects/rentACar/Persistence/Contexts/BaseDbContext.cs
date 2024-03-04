@@ -1,3 +1,4 @@
+using Core.Security.Entities;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +10,11 @@ public class BaseDbContext : DbContext
     protected IConfiguration Configuration { get; set; }
     public DbSet<Brand> Brands  { get; set; }
     public DbSet<Model> Models { get; set; }
+    
+    public DbSet<User> Users { get; set; }
+    public DbSet<OperationClaim> OperationClaims { get; set; }
+    public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
        
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) 
@@ -43,6 +49,8 @@ public class BaseDbContext : DbContext
             a.Property(p => p.ImageUrl).HasColumnName("ImageUrl");
             a.HasOne(p => p.Brand);
         });
+        
+        
 
 
 

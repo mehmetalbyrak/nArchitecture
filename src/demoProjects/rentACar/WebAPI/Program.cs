@@ -13,8 +13,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddApplicationServices();
-
 builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddSecurityServices();
+builder.Services.AddHttpContextAccessor();
+
 
 TokenOptions? tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
@@ -68,7 +70,7 @@ if (app.Environment.IsDevelopment())
 }
 
 //if(app.Environment.IsProduction())
-    app.ConfigureCustomExceptionMiddleware();
+    //app.ConfigureCustomExceptionMiddleware();
 
 
 
